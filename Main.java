@@ -69,10 +69,53 @@ public class Main {
                             }
                         }
                     }
-
                     break;
                 case "2":
                     System.out.println("Option 2 selected");
+
+                    System.out.println("In this game you will roll two dice.");
+                    System.out.println("You can roll as many times as you like, but you stop when you do not roll doubles.");
+                    System.out.println("The total of all your rolls is added up, if you roll > 9 you get 7 chips, > 20 you get 10 chips");
+                    System.out.println("If the game ends before you reach a total of 9, you lose 1 chip.");
+
+                    int dice1;
+                    int dice2;
+                    int totalSum = 0;
+
+                    while (true) {
+                        dice1 = rand.nextInt(7);
+                        dice2 = rand.nextInt(7);
+                        totalSum = totalSum + dice1 + dice2;
+
+                        System.out.println("You have rolled " + dice1 + " and " + dice2);
+                        System.out.println("Your current sum is " + totalSum);
+
+                        if (dice1 == dice2) {
+                            System.out.println("You rolled doubles!");
+                            System.out.println("Do you want to roll again? (enter) yes | (n) no");
+
+                            String rollAgain = scanner.nextLine().trim();
+
+                            if (rollAgain.equalsIgnoreCase("n")) {
+                                break;
+                            }
+                        } else {
+                            System.out.println("You did not roll doubles, the game is over!");
+                            break;
+                        }
+                    }
+
+                    if (totalSum >= 9 && totalSum < 20) {
+                        System.out.println("You have won 7 chips!");
+                        chip_balance += 7;
+                    } else if (totalSum >= 20) {
+                        System.out.println("You have won 10 chips");
+                        chip_balance += 10;
+                    } else {
+                        System.out.println("You have lost 1 chip");
+                        chip_balance -= 1;
+                    }
+
                     break;
                 case "3":
                     System.out.println("Option 3 selected");
