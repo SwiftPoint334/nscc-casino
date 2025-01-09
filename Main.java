@@ -119,7 +119,65 @@ public class Main {
                     break;
                 case "3":
                     System.out.println("Option 3 selected");
-                    break;
+
+                    System.out.println("In this game you will roll 2 dice. The total can never exceed 21.");
+                    System.out.println("If you roll exactly 21 you will win 50 chips.");
+                    System.out.println("You can choose to continue rolling the dice, or stop at any point.");
+                    System.out.println("When you stop the banker will then roll an 8 sided dice repeatedly.");
+                    System.out.println("The banker will stop when their total is greater than or equal to the total of the user, if they exceed 21 they will bust and you will win 12, otherwise, you lose 6 chips.");
+
+                    int userDice1;
+                    int userDice2;
+                    int userSum = 0;
+                    int bankerDice;
+                    int bankerSum = 0;
+
+                    System.out.println("Your turn");
+
+                    while (true) {
+                        userDice1 = rand.nextInt(7);
+                        userDice2 = rand.nextInt(7);
+                        userSum += userDice1 + userDice2;
+
+                        System.out.println("You have rolled " + userDice1 + " and " + userDice2);
+                        System.out.println("Your total is " + userSum);
+
+                        if (userSum > 21) {
+                            System.out.println("You have busted and lost 10 chips.");
+                            chip_balance -= 10;
+                            break;
+                        }
+
+                        System.out.println("Would you like to roll again? (enter) yes | (n) no");
+
+                        String rollAgain = scanner.nextLine().trim();
+
+                        if (rollAgain.equalsIgnoreCase("n")) {
+                            break;
+                        }
+                    }
+
+                    System.out.println("Dealer Turn");
+
+                        while (bankerSum <= userSum) {
+
+                            bankerDice = rand.nextInt(9);
+                            bankerSum += bankerDice;
+
+                            System.out.println("The banker rolled " + bankerDice + " and the banker's total is now " + bankerSum);
+
+                        }
+
+                        if (bankerSum > userSum && !(bankerSum <= 21)) {
+                            System.out.println("The banker has won, you lose 6 chips.");
+                            chip_balance -= 6;
+                            break;
+                        } else {
+                            System.out.println("The banker has busted, you win 12 chips");
+                            chip_balance += 12;
+                            break;
+                        }
+
                 case "q":
                     System.out.println("Quit selected");
                     System.exit(0);
