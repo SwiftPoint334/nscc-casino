@@ -12,7 +12,7 @@ public class Main {
         System.out.println("Please enter the amount of chips you would like to purchase. (Must be between 20 - 200 and a multiple of 10.)");
 
         int chip_balance = 0;
-        while (chip_balance < 20 || chip_balance > 200) {
+        while (chip_balance < 20 || chip_balance > 200 || chip_balance % 10 != 0) {
             try {
                 chip_balance = scanner.nextInt();
                 scanner.nextLine();
@@ -62,15 +62,13 @@ public class Main {
                             break;
                         } else {
                             System.out.println("Sorry, that was not correct - try again.");
-                            if (i >= 10) {
+                            if (i >= 9) {
                                 System.out.println("You have run out of guesses, 10 chips will be deducted from your balance.");
                                 chip_balance -= 10;
                                 break;
                             }
                         }
                     }
-
-
 
                     break;
                 case "2":
