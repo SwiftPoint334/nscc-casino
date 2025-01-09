@@ -25,7 +25,9 @@ public class Main {
             }
         }
 
-        while (true) {
+        boolean cashout = false;
+
+        while (!cashout) {
             System.out.println("You have " + chip_balance + " chips.");
             System.out.println("Please select an option: (1) Game 1 | (2) Game 2 | (3) Game 3 | (q) Quit");
 
@@ -69,6 +71,20 @@ public class Main {
                             }
                         }
                     }
+
+                    if (chip_balance < 0) {
+                        cashout = true;
+                        System.out.println("You have run out of chips.");
+                        break;
+                    }
+
+                    System.out.println("Do you want to continue playing? (enter) yes | (n) no");
+                    String cashoutInput = scanner.nextLine().trim();
+
+                    if (cashoutInput.equalsIgnoreCase("n")) {
+                        cashout = true;
+                    }
+
                     break;
                 case "2":
                     System.out.println("Option 2 selected");
@@ -114,6 +130,20 @@ public class Main {
                     } else {
                         System.out.println("You have lost 1 chip");
                         chip_balance -= 1;
+                    }
+
+                    if (chip_balance < 0) {
+                        cashout = true;
+                        System.out.println("You have run out of chips.");
+                        break;
+                    }
+
+
+                    System.out.println("Do you want to continue playing? (enter) yes | (n) no");
+                    cashoutInput = scanner.nextLine().trim();
+
+                    if (cashoutInput.equalsIgnoreCase("n")) {
+                        cashout = true;
                     }
 
                     break;
@@ -171,12 +201,26 @@ public class Main {
                         if (bankerSum > userSum && !(bankerSum <= 21)) {
                             System.out.println("The banker has won, you lose 6 chips.");
                             chip_balance -= 6;
-                            break;
                         } else {
                             System.out.println("The banker has busted, you win 12 chips");
                             chip_balance += 12;
+                        }
+
+                        if (chip_balance < 0) {
+                            cashout = true;
+                            System.out.println("You have run out of chips.");
                             break;
                         }
+
+                        System.out.println("Do you want to continue playing? (enter) yes | (n) no");
+                        cashoutInput = scanner.nextLine().trim();
+
+                        if (cashoutInput.equalsIgnoreCase("n")) {
+                            cashout = true;
+                        }
+
+
+                        break;
 
                 case "q":
                     System.out.println("Quit selected");
@@ -186,5 +230,7 @@ public class Main {
                     System.out.println("Invalid Option");
             }
         }
+
+        System.out.println("You have cashed out with " + chip_balance + " chips. Thank you for playing.");
     }
 }
