@@ -11,19 +11,7 @@ public class Main {
         System.out.println("Welcome to the Casino!");
         System.out.println("Please enter the amount of chips you would like to purchase. (Must be between 20 - 200 and a multiple of 10.)");
 
-        int chip_balance = 0;
-        while (chip_balance < 20 || chip_balance > 200 || chip_balance % 10 != 0) {
-            try {
-                chip_balance = scanner.nextInt();
-                scanner.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("Input must be an integer between 20 and 200.");
-                scanner.nextLine();
-            }
-            if (chip_balance < 20 || chip_balance > 200 || chip_balance % 10 != 0) {
-                System.out.println("Input is invalid, must be between 20 and 200, and be a multiple of 10.");
-            }
-        }
+        int chip_balance = getValidChipBalance(scanner);
 
         boolean cashout = false;
 
@@ -233,4 +221,34 @@ public class Main {
 
         System.out.println("You have cashed out with " + chip_balance + " chips. Thank you for playing.");
     }
+
+    public static int getValidChipBalance(Scanner scanner) {
+        int chips;
+        while (true) {
+            try {
+                chips = scanner.nextInt();
+                scanner.nextLine();
+                if (chips >= 20 && chips <= 200 && chips % 10 == 0) {
+                    return chips;
+                } else {
+                    System.out.println("Must be between 20 and 200, and be a multiple of 10.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Must be an integer.");
+            }
+        }
+    }
+
+    public static void gameOne() {
+
+    }
+
+    public static void gameTwo() {
+
+    }
+
+    public static void gameThree() {
+        
+    }
+
 }
