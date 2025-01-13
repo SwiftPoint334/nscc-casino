@@ -240,6 +240,13 @@ public class Main {
     }
 
     public static void gameOne() {
+        System.out.println("Option 1 selected");
+
+        int bankerNumber = (int) rand.nextInt(1001);
+
+        System.out.println("A number between 0 and 1000 has been chosen.");
+        System.out.println("You have 10 guesses, the prize is 11 chips minus the number of guesses it took.");
+        System.out.println("If you run out of guesses, you lose 10 chips.");
 
     }
 
@@ -248,7 +255,7 @@ public class Main {
     }
 
     public static void gameThree() {
-        
+
     }
 
 }
